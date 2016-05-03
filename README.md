@@ -1,5 +1,5 @@
 # ai-specs
-Panel for playing around with scripts in Illustrator
+Panel for playing around with scripts in Illustrator  
 ![image](https://cloud.githubusercontent.com/assets/444309/14994614/cd6770dc-113e-11e6-9da0-140dae6d94e8.png)
 
 ## Installation

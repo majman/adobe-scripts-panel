@@ -1,7 +1,7 @@
 #include "underscore.js";
 #include "json2.js";
 
-var SCRIPTS_FOLDER_PATH = '~/Dropbox/SharedAdobeScripts/AwesomeIllustratorScripts';
+var SCRIPTS_FOLDER_PATH = '~/Dropbox/SharedAdobeScripts';
 var folderObjects = {};
 var listData = listFolderScripts();
 
@@ -31,7 +31,7 @@ function listFolderScripts(){
       addScriptFiles(scriptFolder);
     }
   }
-  ob.folderPath = str;
+  ob.folderPath = SCRIPTS_FOLDER_PATH;
   ob.folderObjects = folderObjects;
   ob = JSON.stringify(ob);
   return ob;

@@ -4,6 +4,8 @@ var csInterface = new CSInterface();
 var menuXML = '<Menu> \
   <MenuItem Id="reloadPanel" Label="Reload Panel" Enabled="true" Checked="false"/> \
   <MenuItem Id="debugPanel" Label="Debug" Enabled="true" Checked="false"/> \
+  <MenuItem Label="---" /> \
+  <MenuItem Id="reference" Label="Script Reference" Enabled="true" Checked="false"/> \
 </Menu>';
 
 csInterface.setPanelFlyoutMenu(menuXML, flyoutMenuCallback);
@@ -16,6 +18,8 @@ function flyoutMenuCallback(event){
     }else if(event.data.menuId == 'debugPanel'){
       debugPanel = !debugPanel;
       csInterface.updatePanelMenuItem("Debug", true, debugPanel);
+    }else if(event.data.menuId == 'reference'){
+      window.cep.util.openURLInDefaultBrowser('http://yearbook.github.io/esdocs/#/Illustrator/Application');
     }
   }
 }

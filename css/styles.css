@@ -18,6 +18,11 @@ a {
   text-decoration: none;
   text-shadow: inherit;
 }
+.reference {
+  cursor: pointer;
+  display: block;
+  padding: 5px;
+}
 
 .section {
   margin: 0 0 20px;

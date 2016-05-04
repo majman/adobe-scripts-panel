@@ -3,6 +3,10 @@ Illustrator Panel for playing around with scripts, and easily loading local scri
 
 ![image](https://cloud.githubusercontent.com/assets/444309/14994614/cd6770dc-113e-11e6-9da0-140dae6d94e8.png)
 
+#### Some Amazing scripts:
+[Hiroyuki Sato's illustrator scripts](https://github.com/shspage/illustrator-scripts)
+[johnwun's js4ai](https://github.com/johnwun/js4ai)
+
 ## Installation
 Adobe doesn't make this very straightforward, and I've never had much success packaging and signing extensions.
 

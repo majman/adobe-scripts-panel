@@ -1,9 +1,9 @@
 #include "underscore.js";
 #include "json2.js";
 
-var SCRIPTS_FOLDER_PATH = '~/Dropbox/SharedAdobeScripts';
+var SCRIPTS_FOLDER_PATH = '';
 var folderObjects = {};
-var listData = listFolderScripts();
+var listData = '';
 
 // load xLib
 try {
@@ -19,6 +19,13 @@ function dispatchCEPEvent(_type, _data) {
     eventObj.data = _data;
     eventObj.dispatch();
   }
+}
+
+// List Folder Scripts
+$.listFolderScripts = function() {
+  listData = listFolderScripts();
+  dispatchCEPEvent("List Folder Scripts", listData);
+  return "complete";
 }
 
 function listFolderScripts(){
@@ -63,7 +70,6 @@ function addScriptFiles(scriptFolder, parent){
    });
 }
 
-
 $.runScriptFromFile = function(options) {
   runScriptFromFile(SCRIPTS_FOLDER_PATH+'/'+options);
   dispatchCEPEvent("List Folder Scripts", 'runScriptFromFile');
@@ -101,6 +107,32 @@ function runScriptFromFile(file){
 }
 
 
+// Select / Set Folder Path
+$.selectFolderPath = function() {
+  var ob = {type: 'selectFolderPath'};
+  var dest = Folder.selectDialog("Select Script Folder");
+  if(dest){
+    SCRIPTS_FOLDER_PATH = dest.absoluteURI;
+    // ob.folderPath = dest.absoluteURI;
+    folderObjects = {};
+    listData = listFolderScripts();
+    dispatchCEPEvent("List Folder Scripts", listData);
+  }
+  dispatchCEPEvent("List Folder Scripts", JSON.stringify(ob));
+  return "complete";
+}
+
+$.setFolderPath = function(options) {
+  SCRIPTS_FOLDER_PATH = options;
+  // dispatchCEPEvent("List Folder Scripts", 'setFolderPath');
+  folderObjects = {};
+  listData = listFolderScripts();
+  
+  dispatchCEPEvent("List Folder Scripts", listData);
+  return "complete";
+}
+
+
 // Live Input
 $.runScriptFromInput = function(options) {
   runScriptFromInput(options);
@@ -123,4 +155,3 @@ function bridgeTalkEncode( txt ) {
   return txt.replace(/"/g, "%22");
 }
 
-dispatchCEPEvent("List Folder Scripts", listData);

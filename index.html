@@ -20,7 +20,20 @@
         </div>
         <div class="section scripts">
           <div id="linked-scripts2" class="linked-scripts"></div>
-          <div id="folder-path" class="output-panel"></div>
+          <div class="output-panel output-folder-path">
+            <span class="folder-path">
+              Folder Path: 
+              <span id="folder-path">not set</span>  
+            </span>
+            <span id="set-folder" class="set-folder">set</span>
+          </div>
+        </div>
+        <div class="section">
+          <label class="section-header">Load Remote Script </label>
+          <div class="remote-script">
+            <input type="text" id="script-url" class="text-input" placeholder="https://gist.github.com/script.js" />
+            <button id="load-script" class="button load-script">Load</button>
+          </div>
         </div>
         <div id="output" class="output-panel "></div>
       </div>

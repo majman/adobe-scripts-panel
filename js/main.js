@@ -3,27 +3,59 @@ var csInterface = new CSInterface();
 // Reloads extension panel
 var menuXML = '<Menu> \
   <MenuItem Id="reloadPanel" Label="Reload Panel" Enabled="true" Checked="false"/> \
-  <MenuItem Id="debugPanel" Label="Debug" Enabled="true" Checked="false"/> \
+  <MenuItem Id="debugPanel" Label="Debug" Enabled="true" Checkable="true" Checked="false"/> \
   <MenuItem Label="---" /> \
   <MenuItem Id="reference" Label="Script Reference" Enabled="true" Checked="false"/> \
 </Menu>';
 
 csInterface.setPanelFlyoutMenu(menuXML, flyoutMenuCallback);
 csInterface.addEventListener("com.adobe.csxs.events.flyoutMenuClicked", flyoutMenuCallback);
+csInterface.setContextMenu(menuXML, flyoutMenuCallback);
+csInterface.addEventListener("com.adobe.csxs.events.contextMenuClicked", flyoutMenuCallback);
 var debugPanel = false;
 function flyoutMenuCallback(event){
-  if (event.type === "com.adobe.csxs.events.flyoutMenuClicked") {
-    if(event.data.menuId == 'reloadPanel'){
-      location.reload();
-    }else if(event.data.menuId == 'debugPanel'){
-      debugPanel = !debugPanel;
-      csInterface.updatePanelMenuItem("Debug", true, debugPanel);
-    }else if(event.data.menuId == 'reference'){
-      window.cep.util.openURLInDefaultBrowser('http://yearbook.github.io/esdocs/#/Illustrator/Application');
-    }
+  var menuId = event.type && event.data ? event.data.menuId : event;
+  
+  if(menuId == 'reloadPanel'){
+    location.reload();
+  }else if(menuId == 'debugPanel'){
+    toggleDebug();
+  }else if(menuId == 'reference'){
+    window.cep.util.openURLInDefaultBrowser('http://yearbook.github.io/esdocs/#/Illustrator/Application');
   }
+
 }
 
+function toggleDebug(){
+  debugPanel = !debugPanel;
+  // context menu and flyout menu become out of sync, seems like a bug;
+  csInterface.updateContextMenuItem("Debug", true, debugPanel);
+  csInterface.updatePanelMenuItem("Debug", true, debugPanel);
+}
+
+
+// Load Remote Script
+function loadRemoteScript(url) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  xhr.responseType = 'text';
+  xhr.onload = function(e) {
+    if (this.status == 200 || this.status == 304) {
+      var response = this.response;
+      // var downloadedFile = createTempFolder() + name + '.jpg';
+      // window.cep.fs.writeFile(downloadedFile, response);
+      csInterface.evalScript("$.runScriptFromInput("+$.stringify(response)+")");
+    }
+  };
+  xhr.send();
+};
+
+$('#load-script').on('click', function(e){
+  var url = $.trim($('#script-url').val());
+  if(url.length > 0){
+    loadRemoteScript(url);
+  }
+});
 // Loads / executes a jsx file
 function loadJSXFile(pPath) {
   var scriptPath = csInterface.getSystemPath(SystemPath.EXTENSION) + pPath;
@@ -40,8 +72,17 @@ function appendMessage(str){
   if(debugPanel){
     $("#output").html(m + "<br>" + str);
   }
-
 }
+
+// set script folder paths
+function selectScriptFolderPath(){
+  csInterface.evalScript("$.selectFolderPath()");
+}
+function setScriptFolderPath(folderPath){
+  csInterface.evalScript("$.setFolderPath("+$.stringify(folderPath)+")");
+}
+
+$('#set-folder').on('click', selectScriptFolderPath);
 
 function init() {
   csInterface.addEventListener("List Folder Scripts", function(e) {
@@ -51,6 +92,10 @@ function init() {
       if(e.data.type == 'listFolderScripts'){
         addScripts(e.data);
         str = JSON.stringify(e.data);
+      }else if(e.data.type == 'selectFolderPath'){
+        if(e.data.folderPath){
+          storeFolderPath(e.data.folderPath);
+        }
       }
     }else {
       str = e.data;
@@ -58,9 +103,13 @@ function init() {
     appendMessage(str)
   });
 
+  var folderCount = 0;
+  var spacer = '&nbsp;&nbsp;&nbsp;&nbsp;'
   function addScripts(data){
+    folderCount = 0;
     if(data.folderPath){
-      $('#folder-path').text('Folder Path: ' + data.folderPath);
+      $('#folder-path').text(data.folderPath);
+      storeFolderPath(data.folderPath);
     }
 
     if(data.folderObjects) {
@@ -75,8 +124,7 @@ function init() {
     });
   }
 
-  var folderCount = 0;
-  var spacer = '&nbsp;&nbsp;&nbsp;&nbsp;'
+  
   function addFolderScripts(folderObjects) {
     var fileSpacer = Array(folderCount).join(spacer);
     var foHTML = '';
@@ -107,6 +155,8 @@ function init() {
 
   themeManager.init();
   loadJSXFile("/jsx/listFolderScripts.jsx");
+
+  getLocalSettings();
 }
 
 jQuery.extend({
@@ -140,5 +190,48 @@ jQuery.extend({
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/textmate");
 editor.session.setMode("ace/mode/javascript");
+
+function storeLocalSettings () {
+    editor.resize();
+
+    var toggled = {};
+    _.each($('.toggle-input'), function(el){
+        var id = el.id;
+        if(el.checked == true){
+            toggled[id] = true;
+        }else {
+            toggled[id] = false;
+        }
+    });
+    localStorage.setItem (
+      "com.majman.scriptsPanel.toggled",
+      JSON.stringify(toggled)
+    );
+
+    
+
+}
+function storeFolderPath(folderPath){
+  localStorage.setItem (
+    "com.majman.scriptsPanel.folderPath",
+    folderPath
+  );  
+}
+function getLocalSettings () {
+  var toggled = localStorage.getItem("com.majman.scriptsPanel.toggled");
+  if (toggled) {
+    var toggledSettings = JSON.parse(toggled);
+    _.each(toggledSettings, function(v, k){
+        $('#'+k)[0].checked = v;
+    });
+  }
+  var folderPath = localStorage.getItem("com.majman.scriptsPanel.folderPath");
+  if(folderPath){
+    setScriptFolderPath(folderPath);
+  }
+}
+
+$('.toggle-input').on('change', storeLocalSettings);
+
 
 init();

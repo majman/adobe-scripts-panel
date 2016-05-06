@@ -47,14 +47,12 @@ a {
   vertical-align: top;
   border: none;
   -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,0.5) inset,
-  0 1px rgba(255,255,255, 0.15);
-
+    0 1px rgba(255,255,255, 0.15);
+  outline: none;
   -webkit-border-radius: 2px;
   -webkit-font-smoothing: antialiased;
   cursor: pointer;
 }
-
-
 
 .output-panel {
   padding: 5px;
@@ -176,8 +174,61 @@ a {
 }
 
 .scripts .output-panel {
-  padding: 0 6px;
+  padding: 0 0 0 6px;
   margin: 0;
   line-height: 24px;
   background: rgba(0,0,0,0.15);
+}
+
+.remote-script {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.75);
+  display: flex;
+  border-radius: 1px;
+}
+.text-input {
+  /*background: #ffffff;*/
+  font-family:inherit;
+  font-size: inherit;
+  outline: 0;
+  border: 0;
+  line-height: 15px;
+  padding: 1px 5px 0;
+  border-radius: 1px;
+
+  
+  cursor: text;
+  margin: 0;
+  box-sizing: border-box;
+  flex: 1 0 auto;
+  height: 24px;
+  margin: 0;
+}
+.load-script {
+  flex: 0 0 auto;
+  padding: 0 10px;
+  border-radius: 0 2px 2px 0;
+  box-shadow: -1px 0 rgba(0,0,0,0.75);
+}
+::-webkit-input-placeholder {
+  color: #000;
+  opacity: 0.65;
+  font-style: italic;
+}
+
+.output-folder-path {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 0;
+}
+
+.folder-path {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.set-folder {
+  background: #000;
+  padding: 0 10px;
+  cursor: pointer;
 }

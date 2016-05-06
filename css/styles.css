@@ -180,6 +180,31 @@ a {
   background: rgba(0,0,0,0.15);
 }
 
+.output-folder-path {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 0;
+}
+
+.folder-path {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.set-folder {
+  background: rgba(0,0,0,0.5);
+  padding: 0 6px 0;
+  cursor: pointer;
+  align-self: center;
+  margin: 0 2px;
+  line-height: 19px;
+  border-radius: 2px;
+  font-weight: bold;
+  text-shadow: none;
+  -webkit-font-smoothing: antialiased;
+}
+
 .remote-script {
   box-shadow: 0 0 0 1px rgba(0,0,0,0.75);
   display: flex;
@@ -215,20 +240,3 @@ a {
   font-style: italic;
 }
 
-.output-folder-path {
-  display: flex;
-  justify-content: space-between;
-  padding-right: 0;
-}
-
-.folder-path {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.set-folder {
-  background: #000;
-  padding: 0 10px;
-  cursor: pointer;
-}

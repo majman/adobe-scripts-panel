@@ -1,5 +1,5 @@
 # Illustrator Scripts Panel
-Illustrator Panel for playing around with scripts, and easily loading local script files:
+Illustrator Panel for playing around with scripts, and easily loading local & remote script files:
 
 ![image](https://cloud.githubusercontent.com/assets/444309/15078439/3aeb4df6-1381-11e6-810d-6662ba3e477d.png)
 

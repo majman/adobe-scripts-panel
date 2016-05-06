@@ -1,7 +1,7 @@
 # Illustrator Scripts Panel
 Illustrator Panel for playing around with scripts, and easily loading local script files:
 
-![image](https://cloud.githubusercontent.com/assets/444309/14994614/cd6770dc-113e-11e6-9da0-140dae6d94e8.png)
+![image](https://cloud.githubusercontent.com/assets/444309/15078439/3aeb4df6-1381-11e6-810d-6662ba3e477d.png)
 
 #### Some Amazing scripts:
 [Hiroyuki Sato's illustrator scripts](https://github.com/shspage/illustrator-scripts)  
@@ -34,6 +34,5 @@ or
 [More info here: Adobe CEP Cookbok Repo](https://github.com/Adobe-CEP/CEP-Resources/wiki/CEP-6-HTML-Extension-Cookbook-for-CC-2015#where-are-the-extensions)
 
 
-## Adding Scripts
-- Update `SCRIPTS_FOLDER_PATH` in `jsx/listFolderScripts.jsx` to any folder with .js or .jsx files
-- Refresh the panel from the flyout menu
+## Adding Local Scripts
+- Click 'set' on panel and select directory where your .js / .jsx scripts are

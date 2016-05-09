@@ -181,3 +181,33 @@ a {
   line-height: 24px;
   background: rgba(0,0,0,0.15);
 }
+
+.remote-scripts {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: space-between;
+  border-radius: 1px;
+}
+.remote-scripts .button {
+  flex: 0 0 auto;
+  padding: 0 15px;
+
+  box-shadow: -1px 0 rgba(0,0,0,0.75);
+  border-radius: 0 2px 2px 0;
+}
+
+.text-input {
+  flex: 1 0 auto;
+  font-family:inherit;
+  font-size: inherit;
+  outline: 0;
+  border: 0;
+  line-height: 15px;
+  padding: 1px 3px 0;
+  -webkit-border-radius: 1px;
+
+
+  cursor: text;
+  margin: 0;
+  box-sizing: border-box;
+}

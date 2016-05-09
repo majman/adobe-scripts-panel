@@ -40,8 +40,34 @@ function appendMessage(str){
   if(debugPanel){
     $("#output").html(m + "<br>" + str);
   }
-
 }
+
+function loadRemoteFile(url){
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  xhr.responseType = 'text';
+  xhr.onload = function(e) {
+    if (this.status == 200 || this.status == 304) {
+      var response = this.response;
+      // window.cep.fs.writeFile(downloadedFile, response);
+
+      // var data = {
+      //   'path': downloadedFile
+      // }
+      // var stringified = $.stringify(data);
+
+      csInterface.evalScript("$.runScriptFromInput("+$.stringify(response)+")");
+    }
+  };
+  xhr.send();
+}
+$('#load-script').on('click', function(e){
+  var url = $.trim($('#remote-script-url').val());
+  appendMessage(url);
+  if(url.length > 0){
+    loadRemoteFile(url);
+  }
+});
 
 function init() {
   csInterface.addEventListener("List Folder Scripts", function(e) {

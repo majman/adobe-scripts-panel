@@ -1,10 +1,17 @@
 #include "underscore.js";
 #include "json2.js";
 
-var appName = '';
 var SCRIPTS_FOLDER_PATH = '';
 var folderObjects = {};
 var listData = '';
+
+var appName = '';
+var appStrings = {
+  'ILST' : 'illustrator',
+  'PHXS' : 'photoshop',
+  'PHSP' : 'photoshop',
+  'AEFT' : 'aftereffects'
+}
 
 // load xLib
 try {
@@ -75,13 +82,6 @@ $.runScriptFromFile = function(options) {
   runScriptFromFile(SCRIPTS_FOLDER_PATH+'/'+options);
   dispatchCEPEvent("List Folder Scripts", 'runScriptFromFile');
   return "complete";
-}
-
-var appStrings = {
-  'ILST' : 'illustrator',
-  'PHXS' : 'photoshop',
-  'PHSP' : 'photoshop',
-  'AEFT' : 'aftereffects'
 }
 
 function runScriptFromFile(file){

@@ -53,7 +53,7 @@ function loadRemoteScript(url) {
   xhr.onload = function(e) {
     if (this.status == 200 || this.status == 304) {
       var response = this.response;
-      // var downloadedFile = createTempFolder() + name + '.jpg';
+      // var downloadedFile = createTempFolder() + name + '.js';
       // window.cep.fs.writeFile(downloadedFile, response);
       csInterface.evalScript("$.runScriptFromInput("+$.stringify(response)+")");
     }

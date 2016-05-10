@@ -2,7 +2,7 @@
 Panel for playing around with scripts in After Effects, Illustrator, and Photoshop.
 Easily load local & remote script files:
 
-![image](https://cloud.githubusercontent.com/assets/444309/15078439/3aeb4df6-1381-11e6-810d-6662ba3e477d.png)
+![image](https://cloud.githubusercontent.com/assets/444309/15153395/1bc01028-16a7-11e6-99d5-ce4f1cff2ee1.png)
 
 #### Some Amazing Illustrator scripts:
 [Hiroyuki Sato's illustrator scripts](https://github.com/shspage/illustrator-scripts)  

@@ -1,4 +1,15 @@
 var csInterface = new CSInterface();
+var hostEnv = csInterface.getHostEnvironment();
+var appName = hostEnv.appName;
+
+var refURLs = {
+  'ILST' : 'http://yearbook.github.io/esdocs/#/Illustrator/Application',
+  'PHXS' : 'http://yearbook.github.io/esdocs/#/Photoshop/Application',
+  'PHSP' : 'http://yearbook.github.io/esdocs/#/Photoshop/Application',
+  'AEFT' : 'http://www.adobe.com/devnet/aftereffects.html'
+}
+
+var refURL = refURLs[appName];
 
 // Reloads extension panel
 var menuXML = '<Menu> \
@@ -15,13 +26,13 @@ csInterface.addEventListener("com.adobe.csxs.events.contextMenuClicked", flyoutM
 var debugPanel = false;
 function flyoutMenuCallback(event){
   var menuId = event.type && event.data ? event.data.menuId : event;
-  
+
   if(menuId == 'reloadPanel'){
     location.reload();
   }else if(menuId == 'debugPanel'){
     toggleDebug();
   }else if(menuId == 'reference'){
-    window.cep.util.openURLInDefaultBrowser('http://yearbook.github.io/esdocs/#/Illustrator/Application');
+    window.cep.util.openURLInDefaultBrowser(refURL);
   }
 
 }
@@ -124,7 +135,7 @@ function init() {
     });
   }
 
-  
+
   function addFolderScripts(folderObjects) {
     var fileSpacer = Array(folderCount).join(spacer);
     var foHTML = '';
@@ -155,6 +166,7 @@ function init() {
 
   themeManager.init();
   loadJSXFile("/jsx/listFolderScripts.jsx");
+
 
   getLocalSettings();
 }
@@ -207,17 +219,15 @@ function storeLocalSettings () {
       "com.majman.scriptsPanel.toggled",
       JSON.stringify(toggled)
     );
-
-    
-
 }
 function storeFolderPath(folderPath){
   localStorage.setItem (
     "com.majman.scriptsPanel.folderPath",
     folderPath
-  );  
+  );
 }
 function getLocalSettings () {
+  csInterface.evalScript("$.setAppName("+$.stringify(appName)+")");
   var toggled = localStorage.getItem("com.majman.scriptsPanel.toggled");
   if (toggled) {
     var toggledSettings = JSON.parse(toggled);

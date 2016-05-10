@@ -1,6 +1,7 @@
 #include "underscore.js";
 #include "json2.js";
 
+var appName = '';
 var SCRIPTS_FOLDER_PATH = '';
 var folderObjects = {};
 var listData = '';
@@ -76,6 +77,13 @@ $.runScriptFromFile = function(options) {
   return "complete";
 }
 
+var appStrings = {
+  'ILST' : 'illustrator',
+  'PHXS' : 'photoshop',
+  'PHSP' : 'photoshop',
+  'AEFT' : 'aftereffects'
+}
+
 function runScriptFromFile(file){
   var sf = file;
 
@@ -87,7 +95,8 @@ function runScriptFromFile(file){
     return;
   }
   sf.open('r');
-  var scriptString = sf.read().replace("#target illustrator",'');
+  var findString = "#target " + appStrings[appName];
+  var scriptString = sf.read().replace(findString,'');
   sf.close();
 
   // Thanks to: https://forums.adobe.com/thread/287506?tstart=0
@@ -98,7 +107,7 @@ function runScriptFromFile(file){
   script += "eval( scpDecoded );";
 
   var bt = new BridgeTalk();
-  bt.target = 'illustrator';
+  bt.target = appStrings[appName];
   bt.body = script;
   bt.onError = function(errObj){
     alert(errObj.body);
@@ -106,6 +115,11 @@ function runScriptFromFile(file){
   bt.send();
 }
 
+// Set App Name
+$.setAppName = function(str) {
+  appName = str;
+  return "complete";
+}
 
 // Select / Set Folder Path
 $.selectFolderPath = function() {
@@ -127,7 +141,7 @@ $.setFolderPath = function(options) {
   // dispatchCEPEvent("List Folder Scripts", 'setFolderPath');
   folderObjects = {};
   listData = listFolderScripts();
-  
+
   dispatchCEPEvent("List Folder Scripts", listData);
   return "complete";
 }

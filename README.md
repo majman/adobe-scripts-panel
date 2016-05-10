@@ -1,9 +1,10 @@
-# Illustrator Scripts Panel
-Illustrator Panel for playing around with scripts, and easily loading local & remote script files:
+# Adobe CC Scripts Panel
+Panel for playing around with scripts in After Effects, Illustrator, and Photoshop.
+Easily load local & remote script files:
 
 ![image](https://cloud.githubusercontent.com/assets/444309/15078439/3aeb4df6-1381-11e6-810d-6662ba3e477d.png)
 
-#### Some Amazing scripts:
+#### Some Amazing Illustrator scripts:
 [Hiroyuki Sato's illustrator scripts](https://github.com/shspage/illustrator-scripts)  
 [johnwun's js4ai](https://github.com/johnwun/js4ai)
 

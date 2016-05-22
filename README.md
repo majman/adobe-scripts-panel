@@ -4,9 +4,17 @@ Easily load local & remote script files:
 
 ![image](https://cloud.githubusercontent.com/assets/444309/15153395/1bc01028-16a7-11e6-99d5-ce4f1cff2ee1.png)
 
-#### Some Amazing Illustrator scripts:
+#### Some Amazing Illustrator scripts & resources:
 [Hiroyuki Sato's illustrator scripts](https://github.com/shspage/illustrator-scripts)  
 [johnwun's js4ai](https://github.com/johnwun/js4ai)
+
+#### Some Amazing Photoshop scripts & resources:
+[Kamil Khadeyev](http://blog.darkwark.com/tags/Scripts/)  
+[Jeff Tranberry's Photoshop Scripting using JavaScript](http://www.tranberry.com/photoshop/photoshop_scripting/)
+[Photoshop Dom Hierarchy](http://objjob.phrogz.net/pshop/hierarchy)
+
+#### One Amazing After Effects resource (know of any more?):
+[Dan Ebberts' AE Expressions and Scripting Resource](http://www.motionscript.com/)
 
 ## Installation
 Adobe doesn't make this very straightforward, and I've never had much success packaging and signing extensions.

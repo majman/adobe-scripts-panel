@@ -6,7 +6,8 @@ Easily load local & remote script files:
 
 #### Some Amazing Illustrator scripts & resources:
 [Hiroyuki Sato's illustrator scripts](https://github.com/shspage/illustrator-scripts)  
-[johnwun's js4ai](https://github.com/johnwun/js4ai)
+[johnwun's js4ai](https://github.com/johnwun/js4ai)  
+[Illustrator Praxis](http://illustrator.hilfdirselbst.ch/dokuwiki/en/skripte/javascript/uebersicht)
 
 #### Some Amazing Photoshop scripts & resources:
 [Kamil Khadeyev](http://blog.darkwark.com/tags/Scripts/)  
@@ -34,8 +35,10 @@ or
 
 #### 2. Set PlayerDebugMode to 1
 
-**Win:** regedit > HKEY_CURRENT_USER/Software/Adobe/CSXS.6, then add a new entry PlayerDebugMode of type "string" with the value of "1".  
-**Mac:** In the terminal, type: defaults write com.adobe.CSXS.6 PlayerDebugMode 1
+**Win:** `regedit > HKEY_CURRENT_USER/Software/Adobe/CSXS.6`,  
+then add a new entry PlayerDebugMode of type "string" with the value of "1".
+
+**Mac:** In the terminal, type: `defaults write com.adobe.CSXS.6 PlayerDebugMode 1`  
 (The plist is also located at /Users/USERNAME/Library/Preferences/com.adobe.CSXS.6.plist)
 
 **May require restart or log-out/in**

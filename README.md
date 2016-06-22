@@ -35,11 +35,11 @@ or
 
 #### 2. Set PlayerDebugMode to 1
 
-**Win:** `regedit > HKEY_CURRENT_USER/Software/Adobe/CSXS.6`,  
+**Win:** `regedit > HKEY_CURRENT_USER/Software/Adobe/CSXS.7`,  
 then add a new entry PlayerDebugMode of type "string" with the value of "1".
 
-**Mac:** In the terminal, type: `defaults write com.adobe.CSXS.6 PlayerDebugMode 1`  
-(The plist is also located at /Users/USERNAME/Library/Preferences/com.adobe.CSXS.6.plist)
+**Mac:** In the terminal, type: `defaults write com.adobe.CSXS.7 PlayerDebugMode 1`  
+(The plist is also located at /Users/USERNAME/Library/Preferences/com.adobe.CSXS.7.plist)
 
 **May require restart or log-out/in**
 

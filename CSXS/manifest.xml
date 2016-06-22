@@ -9,10 +9,10 @@
 	</ExtensionList>
 	<ExecutionEnvironment>
 		<HostList>
-      <Host Name="ILST" Version="[19.0,19.9]" />
-      <Host Name="PHXS" Version="[15.0,19.9]" />
-      <Host Name="PHSP" Version="[15.0,19.9]" />
-      <Host Name="AEFT" Version="[13.0,15.9]" />
+      <Host Name="ILST" Version="19.0" />
+      <Host Name="PHXS" Version="15.0" />
+      <Host Name="PHSP" Version="15.0" />
+      <Host Name="AEFT" Version="13.0" />
 		</HostList>
 		<LocaleList>
 			<Locale Code="All" />

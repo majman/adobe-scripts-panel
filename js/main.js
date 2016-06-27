@@ -160,13 +160,26 @@ function init() {
   }
 
   $('#run-input').on('click', function(){
+    runInput();
+  });
+
+  var runInputTimeout = 0;
+  $('.section-editor textarea').off().on('keydown', function(e){
+    if(e.keyCode == 13 && e.metaKey == true){
+      clearTimeout(runInputTimeout);
+      runInputTimeout = setTimeout(function(){
+        runInput();
+      }, 100);
+    }
+  });
+
+  function runInput(){
     var scr = editor.getValue();
     csInterface.evalScript("$.runScriptFromInput("+$.stringify(scr)+")");
-  });
+  }
 
   themeManager.init();
   loadJSXFile("/jsx/listFolderScripts.jsx");
-
 
   getLocalSettings();
 }

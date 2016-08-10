@@ -1,6 +1,7 @@
 var csInterface = new CSInterface();
 var hostEnv = csInterface.getHostEnvironment();
 var appName = hostEnv.appName;
+var currentFolderPath = '';
 
 var refURLs = {
   'ILST' : 'http://yearbook.github.io/esdocs/#/Illustrator/Application',
@@ -43,7 +44,6 @@ function toggleDebug(){
   csInterface.updateContextMenuItem("Debug", true, debugPanel);
   csInterface.updatePanelMenuItem("Debug", true, debugPanel);
 }
-
 
 // Load Remote Script
 function loadRemoteScript(url) {
@@ -90,6 +90,7 @@ function selectScriptFolderPath(){
   csInterface.evalScript("$.selectFolderPath()");
 }
 function setScriptFolderPath(folderPath){
+  currentFolderPath = folderPath;
   csInterface.evalScript("$.setFolderPath("+$.stringify(folderPath)+")");
 }
 
@@ -115,15 +116,18 @@ function init() {
   });
 
   var folderCount = 0;
+  var subDirPath = '';
   var spacer = '&nbsp;&nbsp;&nbsp;&nbsp;'
   function addScripts(data){
     folderCount = 0;
+    subDirPath = '';
     if(data.folderPath){
       $('#folder-path').text(data.folderPath);
       storeFolderPath(data.folderPath);
     }
 
     if(data.folderObjects) {
+      // $('#output').append($.stringify(data));
       var foHTML = addFolderScripts(data.folderObjects);
       $("#linked-scripts2").html('<ul>' + foHTML + '</ul>');
     }
@@ -135,23 +139,25 @@ function init() {
     });
   }
 
-
-  function addFolderScripts(folderObjects) {
+  function addFolderScripts(folderObjects, folderParent) {
     var fileSpacer = Array(folderCount).join(spacer);
     var foHTML = '';
+    var fParent = folderParent || '';
     _.each(folderObjects, function(fob, fobName){
       folderCount ++;
       foHTML += '<li class="folder-group">';
       foHTML +=   '<input id="folder' + folderCount + '" type="checkbox" class="toggle-folder" checked />';
       foHTML +=   '<label for="folder' + folderCount + '">&nbsp;&nbsp;' + fileSpacer + '<span class="folder-name">' + fobName + '</span></label>'
       foHTML +=   '<ul class="file-list">';
+
+      var subDirPath = (fobName && folderCount > 1) ? fParent + fobName + '/' : '';
       if(fob.files && fob.files.length > 0){
         _.each(fob.files, function(fobFile){
-          foHTML +=  '<li class="file-name" data-fileName="'+fobFile+'">&nbsp;&nbsp;' + spacer + fileSpacer + fobFile + '</li>';
+          foHTML +=  '<li class="file-name" data-fileName="'+subDirPath+fobFile+'">&nbsp;&nbsp;' + spacer + fileSpacer + fobFile + '</li>';
         });
       }
       if(fob.folders && _.size(fob.folders) > 0){
-        foHTML += addFolderScripts(fob.folders);
+        foHTML += addFolderScripts(fob.folders, subDirPath);
       }
       foHTML +=   '</ul>';
       foHTML += '</li>';
@@ -234,6 +240,7 @@ function storeLocalSettings () {
     );
 }
 function storeFolderPath(folderPath){
+  currentFolderPath = folderPath;
   localStorage.setItem (
     "com.majman.scriptsPanel.folderPath",
     folderPath
@@ -255,6 +262,5 @@ function getLocalSettings () {
 }
 
 $('.toggle-input').on('change', storeLocalSettings);
-
 
 init();

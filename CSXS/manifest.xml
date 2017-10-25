@@ -34,12 +34,6 @@
 				<UI>
 					<Type>Panel</Type>
 					<Menu>Scripts Panel</Menu>
-					<Geometry>
-						<Size>
-							<Height>300</Height>
-							<Width>300</Width>
-						</Size>
-					</Geometry>
 				</UI>
 			</DispatchInfo>
 		</Extension>

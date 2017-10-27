@@ -1,41 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<ExtensionManifest Version="4.0" ExtensionBundleId="com.majman.scripts-panel" ExtensionBundleVersion="2.1.2"
-		ExtensionBundleName="Scripts Panel" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ExtensionManifest Version="6.0" ExtensionBundleId="com.majman.scripts-panel" ExtensionBundleVersion="2.1.2"
+    ExtensionBundleName="Scripts Panel" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <Author>Marshall Jones</Author>
     <Abstract><![CDATA[Scripts Panel]]></Abstract>
-	<ExtensionList>
-		<Extension Id="com.majman.scripts-panel" Version="2.1.2" />
-	</ExtensionList>
-	<ExecutionEnvironment>
-		<HostList>
+  <ExtensionList>
+    <Extension Id="com.majman.scripts-panel" Version="2.1.2" />
+  </ExtensionList>
+  <ExecutionEnvironment>
+    <HostList>
       <Host Name="ILST" Version="19.0" />
       <Host Name="PHXS" Version="15.0" />
       <Host Name="PHSP" Version="15.0" />
       <Host Name="AEFT" Version="13.0" />
-		</HostList>
-		<LocaleList>
-			<Locale Code="All" />
-		</LocaleList>
-		<RequiredRuntimeList>
-			<RequiredRuntime Name="CSXS" Version="5.0" />
-		</RequiredRuntimeList>
-	</ExecutionEnvironment>
-	<DispatchInfoList>
-		<Extension Id="com.majman.scripts-panel">
-			<DispatchInfo >
-				<Resources>
-				<MainPath>./index.html</MainPath>
-				<ScriptPath>./jsx/hostscript.jsx</ScriptPath>
-				</Resources>
-				<Lifecycle>
-					<AutoVisible>true</AutoVisible>
-				</Lifecycle>
-				<UI>
-					<Type>Panel</Type>
-					<Menu>Scripts Panel</Menu>
-				</UI>
-			</DispatchInfo>
-		</Extension>
-	</DispatchInfoList>
+    </HostList>
+    <LocaleList>
+      <Locale Code="All" />
+    </LocaleList>
+    <RequiredRuntimeList>
+      <RequiredRuntime Name="CSXS" Version="6.0" />
+    </RequiredRuntimeList>
+  </ExecutionEnvironment>
+  <DispatchInfoList>
+    <Extension Id="com.majman.scripts-panel">
+      <DispatchInfo>
+        <Resources>
+          <MainPath>./index.html</MainPath>
+          <ScriptPath>./jsx/hostscript.jsx</ScriptPath>
+        </Resources>
+        <Lifecycle>
+          <AutoVisible>true</AutoVisible>
+        </Lifecycle>
+        <UI>
+          <Type>Panel</Type>
+          <Menu>Scripts Panel</Menu>
+          <Geometry>
+            <Size>
+              <Height>600</Height>
+              <Width>800</Width>
+            </Size>
+            <MinSize>
+              <Height>600</Height>
+              <Width>400</Width>
+            </MinSize>
+          </Geometry>
+        </UI>
+      </DispatchInfo>
+    </Extension>
+  </DispatchInfoList>
 </ExtensionManifest>

@@ -130,7 +130,17 @@ function init() {
 
     $('.linked-scripts').on('click', '.file-name', function(e){
       var fname = $(this).attr('data-fileName');
-      csInterface.evalScript("$.runScriptFromFile("+$.stringify(fname)+")");
+      var parents = $(this).parents('.folder-group');
+      var fPath = '';
+      if(parents.length > 1){
+        var p = _.map(parents, parent => {
+          return parent.dataset.folderName || $(parent).attr('data-folderName');
+        });
+        p.reverse().shift();
+        fPath = p.join('/') + '/';
+      }
+
+      csInterface.evalScript("$.runScriptFromFile("+$.stringify(fPath+fname)+")");
       return false;
     });
   }
@@ -141,7 +151,7 @@ function init() {
     var foHTML = '';
     _.each(folderObjects, function(fob, fobName){
       folderCount ++;
-      foHTML += '<li class="folder-group">';
+      foHTML += '<li class="folder-group" data-folderName="'+fobName+'">';
       foHTML +=   '<input id="folder' + folderCount + '" type="checkbox" class="toggle-folder" checked />';
       foHTML +=   '<label for="folder' + folderCount + '">&nbsp;&nbsp;' + fileSpacer + '<span class="folder-name">' + fobName + '</span></label>'
       foHTML +=   '<ul class="file-list">';

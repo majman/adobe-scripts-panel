@@ -43,7 +43,7 @@ then add a new entry PlayerDebugMode of type "string" with the value of "1".
 
 **May require restart or log-out/in**
 
-[More info here: Adobe CEP Cookbok Repo](https://github.com/Adobe-CEP/CEP-Resources/wiki/CEP-6-HTML-Extension-Cookbook-for-CC-2015#where-are-the-extensions)
+[More info here: Adobe CEP Cookbok Resources](https://github.com/Adobe-CEP/CEP-Resources/blob/master/CEP_8.x/Documentation/CEP%208.0%20HTML%20Extension%20Cookbook.md)
 
 
 ## Adding Local Scripts

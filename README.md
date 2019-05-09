@@ -35,11 +35,11 @@ or
 
 #### 2. Set PlayerDebugMode to 1
 
-**Win:** `regedit > HKEY_CURRENT_USER/Software/Adobe/CSXS.8`,
+**Win:** `regedit > HKEY_CURRENT_USER/Software/Adobe/CSXS.9`, (CSXS.8 for CC 2018)
 then add a new entry PlayerDebugMode of type "string" with the value of "1".
 
-**Mac:** In the terminal, type: `defaults write com.adobe.CSXS.8 PlayerDebugMode 1`
-(The plist is also located at /Users/USERNAME/Library/Preferences/com.adobe.CSXS.8.plist)
+**Mac:** In the terminal, type: `defaults write com.adobe.CSXS.9 PlayerDebugMode 1` (CSXS.8 for CC 2018)
+(The plist is also located at /Users/USERNAME/Library/Preferences/com.adobe.CSXS.9.plist)
 
 **May require restart or log-out/in**
 
